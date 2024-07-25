@@ -1,0 +1,8 @@
+<google-map [center]="center" [zoom]="zoom">
+    <ng-container *ngFor="let garden of gardens$ | async">
+      <map-marker [position]="{ lat: garden.location.latitude, lng: garden.location.longitude }"
+                  [title]="garden.name">
+      </map-marker>
+    </ng-container>
+  </google-map>
+  
