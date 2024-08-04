@@ -3,6 +3,9 @@ import { GardenService } from '../../services/garden.service';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'; 
+import { GoogleMapsModule } from '@angular/google-maps';
+import { CommonModule } from '@angular/common';
+
 
 interface Garden {
   name: string;
@@ -14,17 +17,19 @@ interface Garden {
 
 @Component({
   selector: 'app-map',
+  standalone: true,
+  imports: [GoogleMapsModule, CommonModule],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  gardens$: Observable<Garden[]> | undefined;
   center: google.maps.LatLngLiteral = { lat: 48.8566, lng: 2.3522 }; // Centered on Paris
   zoom = 12;
-
-  constructor(private gardenService: GardenService) {}
+  markerPositions: google.maps.LatLngLiteral[] = [];
 
   ngOnInit(): void {
-    this.gardens$ = this.gardenService.getGardens();
+    this.markerPositions = [
+      { lat: 48.8566, lng: 2.3522 },
+    ];
   }
 }

@@ -19,7 +19,19 @@ interface Garden {
   providedIn: 'root'
 })
 export class GardenService {
-  constructor(private firestore: AngularFirestore) {}
+    constructor(private firestore: AngularFirestore) {}
+
+  addGarden(newGarden: any): Promise<firebase.firestore.DocumentReference<Garden>> {
+    const garden: Garden = {
+        ...newGarden,
+        location: {
+          latitude: parseFloat(newGarden.latitude),
+          longitude: parseFloat(newGarden.longitude)
+        },
+        createdAt: firebase.firestore.FieldValue.serverTimestamp() as firebase.firestore.Timestamp
+      };
+      return this.firestore.collection<Garden>('gardens').add(garden);
+  }
 
   getGardens(): Observable<Garden[]> {
     return this.firestore.collection<Garden>('gardens').valueChanges();

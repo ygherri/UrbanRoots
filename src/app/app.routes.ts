@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { MapComponent } from './components/map/map.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 export const routes: Routes = [
@@ -12,6 +13,8 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'map', component: MapComponent },
+  { path: 'admin', component: AdminComponent },
+
   
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];

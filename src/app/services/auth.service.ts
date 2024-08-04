@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private auth: Auth, private router: Router) {}
+  constructor(private auth: Auth, private firestore: Firestore, private router: Router) {}
 
-  signUp(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+  async signUp(email: string, password: string) {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      const user = userCredential.user;
+      await setDoc(doc(this.firestore, 'users', user.uid), {
+        email: user.email,
+        role: 'member'
+      });
+    } catch (error) {
+      console.error('Erreur lors de l\'inscription : ', error);
+    }
   }
 
   signIn(email: string, password: string) {

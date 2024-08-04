@@ -1,0 +1,10 @@
+<div>
+    <h2>Admin Dashboard</h2>
+    <ul>
+      <li *ngFor="let user of users$ | async">
+        {{ user.email }} - {{ user.role }}
+        <button (click)="makeAdmin(user.id)">Make Admin</button>
+        <button (click)="makeMember(user.id)">Make Member</button>
+      </li>
+    </ul>
+  </div>
