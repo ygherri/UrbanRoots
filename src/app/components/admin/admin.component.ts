@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject  } from '@angular/core';
 import { collection, collectionData, Firestore } from '@angular/fire/firestore';
 import { AdminService } from '../../services/admin.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Auth } from 'firebase/auth';
-import { user } from '@angular/fire/auth';
+import { Auth, user } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-admin',
@@ -16,13 +15,14 @@ import { user } from '@angular/fire/auth';
 export class AdminComponent implements OnInit {
   users$: Observable<any[]> | undefined;
 
-  constructor(private adminService: AdminService, private firestore: Firestore, private auth: Auth) {}
+  constructor(private adminService: AdminService, private firestore: Firestore, @Inject(Auth) private auth: Auth) {}
 
   ngOnInit() {
     user(this.auth).subscribe((currentUser: any) => {
       if (currentUser) {
         // Utilisateur authentifié, récupérer les utilisateurs
-        this.users$ = collectionData(collection(this.firestore, 'users'), { idField: 'id' });
+        const usersCollection = collection(this.firestore, 'users');
+        this.users$ = collectionData(usersCollection, { idField: 'id' });
       } else {
         // Utilisateur non authentifié, gérer l'accès ici
         console.error('Utilisateur non authentifié');

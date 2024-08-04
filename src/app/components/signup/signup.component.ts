@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './signup.component.html'
 })
 export class SignupComponent {
+  firstName: string = '';
+  lastName: string = '';
   email: string = '';
   password: string = '';
   error: string = '';
@@ -18,7 +20,7 @@ export class SignupComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   signUp() {
-    this.authService.signUp(this.email, this.password)
+    this.authService.signUp(this.email, this.password, this.firstName, this.lastName)
       .then(() => this.router.navigate(['/']))
       .catch(error => this.error = error.message);
   }

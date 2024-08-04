@@ -8,12 +8,14 @@ import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 export class AuthService {
   constructor(private auth: Auth, private firestore: Firestore, private router: Router) {}
 
-  async signUp(email: string, password: string) {
+  async signUp(email: string, password: string, firstName: string, lastName: string) {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       const user = userCredential.user;
       await setDoc(doc(this.firestore, 'users', user.uid), {
         email: user.email,
+        firstName: firstName,
+        lastName: lastName,
         role: 'member'
       });
     } catch (error) {

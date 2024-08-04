@@ -1,6 +1,14 @@
 <form (ngSubmit)="signUp()" #signupForm="ngForm">
   <div>
-    <label for="email">Email</label>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" [(ngModel)]="firstName" name="firstName" required>
+  </div>
+  <div>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" [(ngModel)]="lastName" name="lastName" required>
+  </div>
+  <div>
+    <label for="email">Emafil</label>
     <input type="email" id="email" [(ngModel)]="email" name="email" required>
   </div>
   <div>
