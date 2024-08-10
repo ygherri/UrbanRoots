@@ -1,0 +1,29 @@
+<div *ngFor="let discussion of discussions$ | async">
+    <h2>{{ discussion.title }}</h2>
+    <p>{{ discussion.content }}</p>
+    <small>Par {{ discussion.userName }} le {{ discussion.createdAt | date }}</small>
+    <button *ngIf="discussion.id && discussion.userId && discussion.userId === currentUser?.uid" 
+            (click)="deleteDiscussion(discussion.id!)">Supprimer</button>
+            <button (click)="accessDiscussion(discussion.id!)">Accéder à la discussion</button>
+  </div>
+  
+  <!-- Détails de la discussion -->
+  <div *ngIf="selectedDiscussion">
+    <h2>{{ selectedDiscussion.title }}</h2>
+    <p>{{ selectedDiscussion.content }}</p>
+    <small>By {{ selectedDiscussion.userName }} on {{ selectedDiscussion.createdAt | date }}</small>
+  
+    <!-- Input du commentaire -->
+    <div>
+      <label for="comment">Add a comment:</label>
+      <input id="comment" [(ngModel)]="newComment" placeholder="Write your comment here">
+      <button (click)="submitComment(selectedDiscussion.id!)">Submit Comment</button>
+    </div>
+  
+    <!-- Liste des commentaires-->
+    <div *ngFor="let comment of comments$ | async">
+      <p>{{ comment.text }}</p>
+      <small>Par {{ comment.userName }} le {{ comment.createdAt | date }}</small>
+    </div>
+  </div>
+  

@@ -1,4 +1,16 @@
 <google-map [center]="center" [zoom]="zoom">
-    <map-marker *ngFor="let position of markerPositions" [position]="position"></map-marker>
-  </google-map>
-  
+  <map-marker
+    *ngFor="let markerPosition of markerPositions; let i = index"
+    [position]="markerPosition"
+    #marker="mapMarker"
+    (mapClick)="openInfoWindow(marker, i)"
+  ></map-marker>
+  <map-info-window #infoWindow>
+    <div *ngIf="selectedGarden" class="info-window">
+      <h3>{{ selectedGarden.name }}</h3>
+      <p>{{ selectedGarden.description }}</p>
+      <p>Type: {{ selectedGarden.type }}</p>
+      <p>Crée le: {{ selectedGarden.createdAt.toDate() | date }}</p>
+    </div>
+  </map-info-window>
+</google-map>

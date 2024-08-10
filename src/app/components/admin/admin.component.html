@@ -3,8 +3,8 @@
     <ul>
       <li *ngFor="let user of users$ | async">
         {{ user.email }} - {{ user.role }}
-        <button (click)="makeAdmin(user.id)">Make Admin</button>
-        <button (click)="makeMember(user.id)">Make Member</button>
+        <button (click)="makeAdmin(user.id)">Rendre Admin</button>
+        <button (click)="makeMember(user.id)">Rendre Member</button>
       </li>
     </ul>
   </div>

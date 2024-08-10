@@ -1,0 +1,59 @@
+.form-style {
+    width: 35%;
+    padding: 20px;
+    background-color: #F8F7F2;
+    margin: 100px auto;
+    font-family: 'Nexalight', sans-serif;
+}
+
+.form-style input[type="text"],
+.form-style input[type="email"],
+.form-style input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    font-family: 'Nexalight', sans-serif;
+}
+
+.form-style input[type="text"]:focus,
+.form-style input[type="email"]:focus,
+.form-style input[type="password"]:focus {
+    border-color: #90ee90;
+    outline: none;
+    background-color: #fff;
+}
+
+.btn-default {
+    width: 50%;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #000;
+    border: none;
+    font-family: 'Nexalight', sans-serif;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important; 
+    -webkit-text-fill-color: #000 !important;
+}
+
+input:-moz-autofill {
+    background-color: #f0f0f0 !important;
+    color: #000 !important;
+}
+
+.m-30-auto {
+    margin: 30px auto;
+}
+.btn-center {
+    text-align: center;
+}

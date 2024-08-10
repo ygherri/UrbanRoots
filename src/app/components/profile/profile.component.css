@@ -1,14 +1,3 @@
-@font-face {
-    font-family: 'Nexa bold';
-    src: url('../../public/assets/fonts/Nexa-Heavy.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Nexalight';
-    src: url('../../public/assets/fonts/Nexa-ExtraLight.ttf') format('truetype');
-}
-body {
-    font-family: 'Nexalight', sans-serif;
-}
 .form-style {
     width: 35%;
     padding: 20px;
@@ -67,6 +56,9 @@ input:-moz-autofill {
     text-align: center;
 }
 
-.btn-connexion {
+.btn-center {
     text-align: center;
+}
+.m-30-auto {
+    margin: 30px auto;
 }

@@ -1,0 +1,18 @@
+<div class="comments-container">
+    <div class="comments-list">
+      <div *ngIf="(comments$ | async) as comments">
+        <div *ngFor="let comment of comments">
+          <p>{{ comment.text }}</p>
+          <small>Par {{ comment.userName }} le {{ comment.createdAt | date:'EEEE d MMMM y, HH:mm' }}</small>
+          <button *ngIf="comment.userName === currentUserFullName" (click)="deleteComment(comment.id!)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="comment-input">
+      <label for="comment">Ajouter un commentaire:</label>
+      <input id="comment" [(ngModel)]="newComment" placeholder="Écrivez votre commentaire ici">
+      <button [disabled]="currentUserFullName === 'Anonymous'" (click)="submitComment()">Envoyer le commentaire</button>
+    </div>
+  </div>
+  

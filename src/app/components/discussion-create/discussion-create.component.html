@@ -1,0 +1,12 @@
+<form (ngSubmit)="createDiscussion()">
+    <div>
+      <label for="title">Titre</label>
+      <input id="title" [(ngModel)]="discussion.title" name="title" required>
+    </div>
+    <div>
+      <label for="content">Sujet</label>
+      <textarea id="content" [(ngModel)]="discussion.content" name="content" required></textarea>
+    </div>
+    <button type="submit">Créer la discussion</button>
+  </form>
+  

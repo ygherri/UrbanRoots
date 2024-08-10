@@ -1,10 +1,10 @@
 <form [formGroup]="gardenForm" (ngSubmit)="onSubmit()">
     <div>
-      <label for="name">Name:</label>
+      <label for="name">Nom:</label>
       <input id="name" formControlName="name">
     </div>
     <div>
-      <label for="description">Description:</label>
+      <label for="description">Déscription:</label>
       <input id="description" formControlName="description">
     </div>
     <div>
@@ -12,13 +12,9 @@
       <input id="type" formControlName="type">
     </div>
     <div>
-      <label for="latitude">Latitude:</label>
-      <input id="latitude" formControlName="latitude" type="number">
+      <label for="address">Addresse:</label>
+      <input id="address" formControlName="address">
     </div>
-    <div>
-      <label for="longitude">Longitude:</label>
-      <input id="longitude" formControlName="longitude" type="number">
-    </div>
-    <button type="submit" [disabled]="gardenForm.invalid">Add Garden</button>
+    <button type="submit" [disabled]="gardenForm.invalid">Ajouter</button>
   </form>
   
