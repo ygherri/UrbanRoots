@@ -1,4 +1,4 @@
-<google-map [center]="center" [zoom]="zoom">
+<google-map [center]="center" [zoom]="zoom" class="map-style">
   <map-marker
     *ngFor="let markerPosition of markerPositions; let i = index"
     [position]="markerPosition"
@@ -10,7 +10,7 @@
       <h3>{{ selectedGarden.name }}</h3>
       <p>{{ selectedGarden.description }}</p>
       <p>Type: {{ selectedGarden.type }}</p>
-      <p>Crée le: {{ selectedGarden.createdAt.toDate() | date }}</p>
+      <p>Date d'ajout: {{ createdAtDate | date:'EEEE dd MMMM yyyy, à HH:mm' }}</p>
     </div>
   </map-info-window>
 </google-map>

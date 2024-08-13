@@ -1,11 +1,12 @@
-<form [formGroup]="gardenForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="gardenForm" (ngSubmit)="onSubmit()" class="form-style">
+  <h2>Ajouter un jardin</h2>
     <div>
       <label for="name">Nom:</label>
       <input id="name" formControlName="name">
     </div>
     <div>
-      <label for="description">Déscription:</label>
-      <input id="description" formControlName="description">
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
     </div>
     <div>
       <label for="type">Type:</label>
@@ -15,6 +16,32 @@
       <label for="address">Addresse:</label>
       <input id="address" formControlName="address">
     </div>
-    <button type="submit" [disabled]="gardenForm.invalid">Ajouter</button>
+    <div class="btn-center m-30-auto"><button type="submit" [disabled]="gardenForm.invalid" class="btn-default">Ajouter</button></div>
   </form>
+  <div *ngIf="(userGardens$ | async)?.length as gardensLength; else noGardens">
+    <ng-container *ngIf="gardensLength > 0">
+      <div  class="garden-list">
+      <h2>Mes Jardins</h2>
+      <ul>
+        <li *ngFor="let garden of userGardens$ | async">
+          <p>{{ garden.name }} - {{ garden.address }}</p>
+          <div class="garden-btns">
+            <button class="btn-green" *ngIf="garden.id" (click)="createEvent(garden.id)">Créer un événement</button> <!-- Nouveau bouton -->
+          <button class="btn-green-outline" *ngIf="garden.id" (click)="deleteGarden(garden.id)">Supprimer</button>
+          </div>
+          
+        </li>
+      </ul>
+    </div>
+    </ng-container>
+  </div>
+  
+  <ng-template #noGardens >
+    <div class="garden-list-empty">
+      <p>Vous n'avez pas encore créé de jardins.</p>
+    </div>
+    
+  </ng-template>
+  
+  
   

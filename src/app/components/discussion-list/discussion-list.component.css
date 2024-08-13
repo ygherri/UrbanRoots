@@ -1,0 +1,51 @@
+.btn-inherit {
+    background-color: inherit;
+    font-family: 'Nexa bold', sans-serif;
+    border: none;
+    align-items: center;
+    width: 95%;
+    text-align: end;
+    padding: 50px 20px 0;
+    font-size: 16px;
+}
+.btn-inherit img {
+    margin-left: 10px;
+}
+.discussion-content {
+    border: 2px solid #85C484;
+    border-radius: 5px;
+    width: 80%;
+    margin: 100px auto;
+    padding: 20px 50px;
+}
+.btn-green {
+    background-color: #85C484;
+    text-align: center;
+    color: #fff;
+    border-radius: 26px;
+    text-decoration: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Nexa bold', sans-serif;
+    margin-left: 10px;
+}
+.btn-green-outline {
+    background-color: #fff;
+    text-align: center;
+    color: #85C484;
+    border-radius: 26px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid #85C484;
+    cursor: pointer;
+    font-family: 'Nexa bold', sans-serif;
+    margin-left: 20px;
+
+  }
+.discussion-content h2 {
+    font-family: 'Nexa bold', sans-serif;
+}
+.discussion-content p, .discussion-content small {
+    font-family: 'NexaLight', sans-serif;
+}

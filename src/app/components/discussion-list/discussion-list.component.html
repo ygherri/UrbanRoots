@@ -1,10 +1,14 @@
-<div *ngFor="let discussion of discussions$ | async">
+<button (click)="goToCreateDiscussion()" class="btn-inherit">
+  Créer une nouvelle discussion
+  <img src="assets/images/create.svg" alt="Icone créer discussion" style="width: 16px; height: 16px; margin-right: 8px;">
+</button>
+<div *ngFor="let discussion of discussions$ | async" class="discussion-content">
     <h2>{{ discussion.title }}</h2>
     <p>{{ discussion.content }}</p>
     <small>Par {{ discussion.userName }} le {{ discussion.createdAt | date }}</small>
-    <button *ngIf="discussion.id && discussion.userId && discussion.userId === currentUser?.uid" 
+    <button class="btn-green-outline" *ngIf="discussion.id && discussion.userId && discussion.userId === currentUser?.uid" 
             (click)="deleteDiscussion(discussion.id!)">Supprimer</button>
-            <button (click)="accessDiscussion(discussion.id!)">Accéder à la discussion</button>
+    <button (click)="accessDiscussion(discussion.id!)" class="btn-green">Accéder à la discussion</button>
   </div>
   
   <!-- Détails de la discussion -->

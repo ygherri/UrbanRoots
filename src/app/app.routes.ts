@@ -12,6 +12,9 @@ import { ApproveGardensComponent } from './components/approve-gardens/approve-ga
 import { DiscussionListComponent } from './components/discussion-list/discussion-list.component';
 import { DiscussionCreateComponent } from './components/discussion-create/discussion-create.component';
 import { DiscussionDetailComponent } from './components/discussion-detail/discussion-detail.component';
+import { EventListComponent } from './components/event-list/event-list.component';
+import { EventFormComponent } from './components/event-form/event-form.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 
@@ -28,7 +31,10 @@ export const routes: Routes = [
   { path: 'discussions', component: DiscussionListComponent },
   { path: 'discussions/create', component: DiscussionCreateComponent },
   { path: 'discussions/:id', component: DiscussionDetailComponent },
-  
+  { path: 'gardens/:gardenId/events', component: EventListComponent },
+  { path: 'gardens/:gardenId/events/new', component: EventFormComponent },
+  { path: 'calendar', component: CalendarComponent },
+  { path: 'calendar', component: CalendarComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

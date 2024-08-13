@@ -1,21 +1,13 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { GardenService } from '../../services/garden.service';
-import { Observable } from 'rxjs';
+import { GardenService, Garden } from '../../services/garden.service'; import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'; 
 import { GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { CommonModule } from '@angular/common';
+import { Timestamp } from 'firebase/firestore';
 
 
-interface Garden {
-  id?: string;
-  name: string;
-  description: string;
-  type: string;
-  location: { latitude: number; longitude: number };
-  createdAt: firebase.firestore.Timestamp;
-  approved: boolean;
-}
+
 
 @Component({
   selector: 'app-map',
@@ -35,15 +27,39 @@ export class MapComponent implements OnInit {
 
   constructor(private gardenService: GardenService) {}
   ngOnInit(): void {
-    this.gardenService.getGardens().subscribe((gardens: Garden[]) => {
-      this.gardens = gardens.filter(garden => garden.approved);
-      console.log('Gardens fetched: ', this.gardens);
-      this.markerPositions = this.gardens.map(garden => ({
-        lat: garden.location.latitude,
-        lng: garden.location.longitude
-      }));
-      console.log('Marker positions: ', this.markerPositions);
+    this.gardenService.getApprovedGardens().subscribe({
+      next: (gardens: Garden[]) => {
+        console.log('Raw gardens data:', gardens);
+    
+        this.gardens = gardens.map(garden => ({
+          ...garden,
+          createdAt: garden.createdAt instanceof Timestamp ? garden.createdAt.toDate() : garden.createdAt
+        })).filter(garden => {
+          const hasLocation = garden.location?.latitude && garden.location?.longitude;
+          console.log(`Garden ${garden.name} has valid location:`, hasLocation);
+          return garden.approved && hasLocation;
+        });
+    
+        console.log('Filtered gardens:', this.gardens); 
+    
+        this.markerPositions = this.gardens.map(garden => ({
+          lat: garden.location.latitude,
+          lng: garden.location.longitude
+        }));
+        console.log('Marker positions:', this.markerPositions);
+      },
+      error: (err) => console.error('Error fetching gardens:', err),
+      complete: () => console.log('Fetching gardens complete')
     });
+    
+  }
+  get createdAtDate(): Date | undefined {
+    if (this.selectedGarden?.createdAt instanceof Timestamp) {
+      return this.selectedGarden.createdAt.toDate(); // Convertir Firestore Timestamp en JavaScript Date
+    } else if (this.selectedGarden?.createdAt instanceof Date) {
+      return this.selectedGarden.createdAt;
+    }
+    return undefined;
   }
   openInfoWindow(marker: MapMarker, index: number) {
     this.selectedGarden = this.gardens[index];

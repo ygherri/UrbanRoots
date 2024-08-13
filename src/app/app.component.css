@@ -8,6 +8,8 @@
 }
 body {
     font-family: 'Nexalight', sans-serif;
+    padding: 0;
+    margin: 0;
 }
 .form-style {
     width: 35%;

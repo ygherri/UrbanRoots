@@ -1,4 +1,5 @@
 <form class="login-form" (ngSubmit)="signIn()" #loginForm="ngForm">
+  <h2>Connexion</h2>
     <div>
       <label for="email">Email</label>
       <input type="email" id="email" [(ngModel)]="email" name="email" required>
@@ -7,11 +8,12 @@
       <label for="password">Mot de passe</label>
       <input type="password" id="password" [(ngModel)]="password" name="password" required>
     </div>
+    <div class="btn-center margin-btn-login"><button class="btn-default" type="submit" [disabled]="!loginForm.form.valid">Connexion</button></div>
+
     <div class="margin-login">
       <span>Pas encore inscrit ? </span>
-      <a href="/signup">Inscription</a>
+      <a class="signup-span" href="/signup">Inscription</a>
     </div>
-    <div class="btn-center"><button class="btn-default" type="submit" [disabled]="!loginForm.form.valid">Connexion</button></div>
     
     <div *ngIf="error">{{ error }}</div>
   </form>

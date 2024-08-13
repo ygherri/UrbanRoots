@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Nexa bold';
+    src: url('../public/assets/fonts/Nexa-Heavy.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Nexalight';
+    src: url('../public/assets/fonts/Nexa-ExtraLight.ttf') format('truetype');
+}
+body {
+    margin: 0;
+}

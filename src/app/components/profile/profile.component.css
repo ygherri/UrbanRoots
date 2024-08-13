@@ -1,9 +1,11 @@
 .form-style {
     width: 35%;
     padding: 20px;
-    background-color: #F8F7F2;
+    background-color: #85C484;
     margin: 100px auto;
-    font-family: 'Nexalight', sans-serif;
+    font-family: 'Nexa bold', sans-serif;
+    color: #fff;
+    border-radius: 26px;
 }
 
 .form-style input[type="text"],
@@ -61,4 +63,7 @@ input:-moz-autofill {
 }
 .m-30-auto {
     margin: 30px auto;
+}
+.form-style h2 {
+    text-align: center;
 }

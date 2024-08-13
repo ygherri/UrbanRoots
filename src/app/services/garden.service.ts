@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore, collection, collectionData, doc, updateDoc, deleteDoc, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore'; 
-interface Garden {
+import { query, Timestamp, where } from 'firebase/firestore';
+
+export interface Garden {
   id?: string;
   name: string;
   description: string;
   type: string;
+  address: string;
   location: {
     latitude: number;
     longitude: number;
   };
-  createdAt: firebase.firestore.Timestamp;
+  createdAt: Timestamp | Date;
   approved: boolean;
   createdBy: string;
 }
@@ -22,36 +23,40 @@ interface Garden {
   providedIn: 'root'
 })
 export class GardenService {
-    constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: Firestore) {}
 
-  addGarden(newGarden: any): Promise<firebase.firestore.DocumentReference<Garden>> {
-    const garden: Garden = {
-        ...newGarden,
-        location: {
-          latitude: parseFloat(newGarden.latitude),
-          longitude: parseFloat(newGarden.longitude)
-        },
-        createdAt: firebase.firestore.FieldValue.serverTimestamp() as firebase.firestore.Timestamp,
-        approved: false,
-        createdBy: newGarden.createdBy
-      };
-      return this.firestore.collection<Garden>('gardens').add(garden);
+  getGardensByUser(userId: string): Observable<Garden[]> {
+    const gardensCollection = collection(this.firestore, 'gardens');
+    const userGardensQuery = query(gardensCollection, where('createdBy', '==', userId));
+    return collectionData(userGardensQuery, { idField: 'id' }) as Observable<Garden[]>;
   }
 
-  getGardens(): Observable<Garden[]> {
-    return this.firestore.collection<Garden>('gardens').snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Garden;
-        const id = a.payload.doc.id;
-        return { id, ...data }; 
-      }))
+  getApprovedGardens(): Observable<Garden[]> {
+    const gardensCollection = collection(this.firestore, 'gardens');
+    return collectionData(gardensCollection, { idField: 'id' }).pipe(
+      map((gardens: any[]) => gardens.filter(garden => garden.approved))
     );
   }
-  approveGarden(gardenId: string): Promise<void> {
-    return this.firestore.collection('gardens').doc(gardenId).update({ approved: true });
+
+  async addGarden(garden: Garden): Promise<void> {
+    const gardensCollection = collection(this.firestore, 'gardens');
+    
+    garden.createdAt = Timestamp.now();
+  
+    await addDoc(gardensCollection, garden);
   }
 
-  rejectGarden(gardenId: string): Promise<void> {
-    return this.firestore.collection('gardens').doc(gardenId).delete();
+  async approveGarden(gardenId: string): Promise<void> {
+    const gardenDoc = doc(this.firestore, `gardens/${gardenId}`);
+    await updateDoc(gardenDoc, { approved: true });
+  }
+
+  async rejectGarden(gardenId: string): Promise<void> {
+    const gardenDoc = doc(this.firestore, `gardens/${gardenId}`);
+    return updateDoc(gardenDoc, { approved: false });
+  }
+  async deleteGarden(gardenId: string): Promise<void> {
+    const gardenDoc = doc(this.firestore, `gardens/${gardenId}`);
+    return deleteDoc(gardenDoc);
   }
 }

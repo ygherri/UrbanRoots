@@ -1,10 +1,12 @@
 .login-form {
     width: 35%;
     padding: 20px;
-    background-color: #F8F7F2;
+    background-color: #85C484;
     margin: 100px auto;
-    font-family: 'Nexalight', sans-serif;
+    font-family: "Nexa bold", sans-serif;
     height: 400px;
+    border-radius: 20px;
+    color: #fff;
 }
 .login-form input[type="email"],
 .login-form input[type="password"] {
@@ -13,7 +15,7 @@
   margin: 10px 0;
   box-sizing: border-box;
   border: none;
-  border-radius: 4px;
+  border-radius: 26px;
   background-color: #fff;
   font-size: 16px;
   font-family: 'Nexalight', sans-serif;
@@ -52,5 +54,13 @@ input:-moz-autofill {
 }
 .btn-center {
     text-align: center;
-
+}
+.login-form h2 {
+    text-align: center;
+}
+.signup-span {
+    text-decoration: none;
+}
+.margin-btn-login {
+    margin: 30px 0;
 }

@@ -80,4 +80,7 @@ export class DiscussionListComponent implements OnInit {
       this.newComment = '';
     }
   }
+  goToCreateDiscussion(): void {
+    this.router.navigate(['/discussions/create']);
+  }
 }

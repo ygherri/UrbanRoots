@@ -1,0 +1,103 @@
+
+body {
+    margin: 0;
+}
+.hero-left h1 {
+    font-family: 'Nexa bold', sans-serif;
+    font-size: 60px;
+}
+.hero-left p {
+    font-family: 'Nexalight', sans-serif;
+    font-size: 25px;
+
+}
+.btn-black {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    width: 200px;
+    font-family: 'Nexa bold', sans-serif;
+
+}
+.btn-black a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+.hero-content {
+    display: flex;
+    padding: 50px 100px;
+    align-items: center;
+}
+.hero-left {
+    width: 50%;
+}
+.hero-right {
+    width: 50%;
+    text-align: center;
+}
+.quick-intro {
+    background-color: #85C484;
+    color: #fff;
+    padding: 100px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+  }
+.intro-box h3,.benefit h3, .why-urbanroots  h2, .signup-content h2 {
+    font-family: 'Nexa bold', sans-serif;
+}
+.intro-box p, .benefit p, .signup-content p {
+    font-family: 'Nexalight', sans-serif;
+}
+.why-urbanroots {
+    text-align: center;
+    padding: 50px 100px;
+}
+.why-urbanroots h2 {
+    font-size: 35px;
+}
+
+.benefits {
+    display: flex;
+}
+.benefit p {
+    width: 70%;
+    margin: auto;
+}
+.benefit {
+    text-align: center;
+}
+.m-top-15 {
+    margin-top: 15px;
+}
+.btn-green {
+    background-color: #85C484;
+    text-align: center;
+    color: #fff;
+    border-radius: 26px;
+    border: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 200px;
+    font-family: 'Nexa bold', sans-serif;
+
+  }
+  .btn-green a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Nexa bold', sans-serif;
+  }
+.signup-content {
+    text-align: center;
+    padding: 100px;
+}
+.signup-content p {
+    width: 70%;
+    margin: 30px auto;
+}
+.signup-content span, .why-urbanroots span {
+    color: #85C484;
+}

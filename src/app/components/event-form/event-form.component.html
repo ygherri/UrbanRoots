@@ -1,0 +1,25 @@
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="form-style">
+  <h2>Créer un évènement</h2>
+    <div>
+      <label for="name">Nom de l'événement</label>
+      <input id="name" formControlName="name" required>
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" required></textarea>
+    </div>
+    <div>
+      <label for="date">Date et heure</label>
+      <input id="date" type="datetime-local" formControlName="date" required>
+    </div>
+    <div>
+      <label for="location">Lieu</label>
+      <input id="location" formControlName="location" required>
+    </div>
+    <div>
+      <label for="maxParticipants">Nombre maximum de participants (optionnel)</label>
+      <input id="maxParticipants" type="number" formControlName="maxParticipants">
+    </div>
+    <div class="btn-center m-30-auto"><button type="submit" [disabled]="eventForm.invalid" class="btn-default">Créer</button></div>
+  </form>
+  

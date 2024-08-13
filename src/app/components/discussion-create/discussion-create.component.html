@@ -1,4 +1,4 @@
-<form (ngSubmit)="createDiscussion()">
+<form (ngSubmit)="createDiscussion()" class="form-style">
     <div>
       <label for="title">Titre</label>
       <input id="title" [(ngModel)]="discussion.title" name="title" required>
@@ -7,6 +7,6 @@
       <label for="content">Sujet</label>
       <textarea id="content" [(ngModel)]="discussion.content" name="content" required></textarea>
     </div>
-    <button type="submit">Créer la discussion</button>
+    <div class="btn-center m-30-auto"><button type="submit" class="btn-default">Créer la discussion</button></div>
   </form>
   
