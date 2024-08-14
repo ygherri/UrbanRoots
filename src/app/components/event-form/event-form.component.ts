@@ -49,7 +49,7 @@ export class EventFormComponent implements OnInit{
         date: new Date(this.eventForm.value.date) as unknown as Timestamp,
       };
       this.eventService.addEvent(newEvent).then(() => {
-        this.router.navigate(['/gardens', this.gardenId]);
+        this.router.navigate(['/calendar']);
       });
     }
   }

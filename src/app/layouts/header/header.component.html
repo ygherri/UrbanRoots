@@ -3,9 +3,10 @@
     <ul>
       <li *ngIf="(currentUser$ | async) === null"><a class="btn-green-outline" routerLink="/login">Connexion</a></li>
       <li *ngIf="(currentUser$ | async) === null"><a routerLink="/signup" class="btn-green">Inscription</a></li>
-      <li *ngIf="(currentUser$ | async) !== null"><a routerLink="/profile" class="nav-btn">Profil</a></li>
-      <li *ngIf="(currentUser$ | async) !== null"><a routerLink="/discussions" class="nav-btn">Forum</a></li>
-      <li *ngIf="(currentUser$ | async) !== null"><a routerLink="/create-garden" class="nav-btn">Mes jardins</a></li>
+      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/profile" class="nav-btn">Profil</a></li>
+      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/discussions" class="nav-btn">Forum</a></li>
+      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/create-garden" class="nav-btn">Mes jardins</a></li>
+      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/calendar" class="nav-btn">Évènements</a></li>
 
       <li *ngIf="(currentUser$ | async) !== null"><a (click)="signOut()" class="btn-green btn-default">Déconnexion</a></li>
     </ul>

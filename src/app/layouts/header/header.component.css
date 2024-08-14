@@ -2,7 +2,7 @@ nav ul {
     list-style-type: none;
     display: flex;
     align-items: center;
-    width: 30%;
+    width: 50%;
     justify-content: space-evenly;
 }
 nav {
@@ -11,6 +11,9 @@ nav {
     justify-content: space-between;
     font-family: 'Nexa bold', sans-serif;
 
+}
+.m-right-30 {
+  margin-right: 50px;
 }
 .logo img {
     width: 300px;

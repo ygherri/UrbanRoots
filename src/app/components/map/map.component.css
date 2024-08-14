@@ -1,9 +1,14 @@
+.map-container {
+  width: 100% !important;
+  height: 500px !important;
+  border-radius: 20px;
+}
+
+google-map {
+  width: 1000px !important;
+  height: 500px !important;
+}
+
 .info-window {
-    max-width: 200px;
-  }
-  .map-container {
-    width: 100%;
-    height: 500px; /* La hauteur que vous voulez pour votre carte */
-    max-width: 1200px; /* Vous pouvez limiter la largeur si nécessaire */
-    margin: 0 auto; /* Centrer la section si nécessaire */
-  }
+  max-width: 200px;
+}

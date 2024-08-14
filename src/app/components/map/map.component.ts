@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { GardenService, Garden } from '../../services/garden.service'; import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'; 
@@ -15,7 +15,8 @@ import { Timestamp } from 'firebase/firestore';
   imports: [GoogleMapsModule, CommonModule],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  providers: [GardenService]
+  providers: [GardenService],
+  encapsulation: ViewEncapsulation.None
 })
 export class MapComponent implements OnInit {
   center: google.maps.LatLngLiteral = { lat: 48.8566, lng: 2.3522 };
@@ -55,7 +56,7 @@ export class MapComponent implements OnInit {
   }
   get createdAtDate(): Date | undefined {
     if (this.selectedGarden?.createdAt instanceof Timestamp) {
-      return this.selectedGarden.createdAt.toDate(); // Convertir Firestore Timestamp en JavaScript Date
+      return this.selectedGarden.createdAt.toDate();
     } else if (this.selectedGarden?.createdAt instanceof Date) {
       return this.selectedGarden.createdAt;
     }

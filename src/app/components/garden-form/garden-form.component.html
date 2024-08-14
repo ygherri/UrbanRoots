@@ -1,4 +1,13 @@
-<form [formGroup]="gardenForm" (ngSubmit)="onSubmit()" class="form-style">
+<div class="add-garden">
+  <p>Bienvenue dans votre espace de gestion des jardins. Ici, vous pouvez ajouter un nouveau jardin en renseignant les informations nécessaires dans le formulaire ci-dessous.</p>
+
+</div>
+<div class="btn-add-garden">
+  <button class="btn-default-garden" (click)="toggleForm()">
+    {{ showForm ? 'Annuler' : 'Ajouter un jardin' }}
+  </button>
+</div>
+<form *ngIf="showForm" [formGroup]="gardenForm" (ngSubmit)="onSubmit()" class="form-style">
   <h2>Ajouter un jardin</h2>
     <div>
       <label for="name">Nom:</label>
@@ -26,7 +35,7 @@
         <li *ngFor="let garden of userGardens$ | async">
           <p>{{ garden.name }} - {{ garden.address }}</p>
           <div class="garden-btns">
-            <button class="btn-green" *ngIf="garden.id" (click)="createEvent(garden.id)">Créer un événement</button> <!-- Nouveau bouton -->
+            <button class="btn-green" *ngIf="garden.id" (click)="createEvent(garden.id)">Créer un événement</button>
           <button class="btn-green-outline" *ngIf="garden.id" (click)="deleteGarden(garden.id)">Supprimer</button>
           </div>
           

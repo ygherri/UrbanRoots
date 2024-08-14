@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
 import { Garden, GardenService } from '../../services/garden.service';
 import { AuthService } from '../../services/auth.service';
@@ -19,6 +19,14 @@ export class GardenFormComponent {
   gardenForm: FormGroup;
   error: string = '';
   userGardens$!: Observable<Garden[]>;
+  showForm: boolean = false; 
+
+  @ViewChild('addGardenForm') addGardenForm: ElementRef | undefined;  
+  
+  
+  scrollToAddGarden() {
+    this.addGardenForm?.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
 
 
   constructor(private fb: FormBuilder, private gardenService: GardenService, private authService: AuthService, private router: Router) {
@@ -38,6 +46,12 @@ export class GardenFormComponent {
         });
       }
     });
+  }
+  toggleForm() {
+    this.showForm = !this.showForm;
+    if (this.showForm) {
+      this.scrollToAddGarden();
+    }
   }
 
   onSubmit() {
@@ -75,25 +89,22 @@ export class GardenFormComponent {
       });
     }
   }
-  deleteGarden(gardenId: string | undefined): void {
-    if (!gardenId) {
-      console.error('Invalid garden ID');
-      return;
-    }
-  
+  deleteGarden(gardenId: string | number): void {
+    const idAsString = String(gardenId);
     if (confirm('Êtes-vous sûr de vouloir supprimer ce jardin?')) {
-      this.gardenService.deleteGarden(gardenId).then(() => {
+      this.gardenService.deleteGarden(idAsString).then(() => {
         console.log('Jardin supprimé avec succès!');
       }).catch(error => {
         console.error('Erreur lors de la suppression du jardin : ', error);
       });
+    }}
+    createEvent(gardenId: string | number): void {
+      const idAsString = String(gardenId);
+      console.log('Garden ID:', idAsString);
+      const url = `/gardens/${idAsString}/events/new`;
+      console.log('Navigating to:', url);
+      this.router.navigate([url]);
     }
-  }
-  createEvent(gardenId: string): void {
-    const url = `/gardens/${gardenId}/events/new`;
-    console.log('Navigating to:', url);
-    this.router.navigate([url]);
-  }
   
     
 }

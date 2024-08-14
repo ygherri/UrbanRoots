@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, doc, updateDoc, deleteDoc, addDoc } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Firestore, collection, collectionData, doc, updateDoc, getDoc, deleteDoc, addDoc } from '@angular/fire/firestore';
+import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { query, Timestamp, where } from 'firebase/firestore';
+import { HttpClient } from '@angular/common/http'; 
 
 export interface Garden {
-  id?: string;
+  id: string | number;
   name: string;
   description: string;
   type: string;
@@ -23,7 +24,26 @@ export interface Garden {
   providedIn: 'root'
 })
 export class GardenService {
+ 
   constructor(private firestore: Firestore) {}
+  getAllGardens(): Observable<Garden[]> {
+    const gardensCollection = collection(this.firestore, 'gardens');
+    return collectionData(gardensCollection, { idField: 'id' }) as Observable<Garden[]>;
+  }
+
+  getGardenById(gardenId: string): Observable<Garden | undefined> {
+    const gardenDocRef = doc(this.firestore, `gardens/${gardenId}`);
+    return from(getDoc(gardenDocRef)).pipe(
+      map(function (docSnapshot) {
+          const data = docSnapshot.data();
+          if (data) {
+            return { id: docSnapshot.id, ...data } as Garden;
+          } else {
+            return undefined;
+          }
+        })
+    );
+  }
 
   getGardensByUser(userId: string): Observable<Garden[]> {
     const gardensCollection = collection(this.firestore, 'gardens');

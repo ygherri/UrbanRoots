@@ -1,0 +1,242 @@
+.calendar-container {
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 0 100px 0;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'NexaLight', sans-serif;
+
+  }
+  
+  .calendar-header button {
+    padding: 10px 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'NexaLight', sans-serif;
+
+  }
+  
+  .calendar-header button:hover {
+    background-color: #85C484;
+  }
+  
+  .calendar-header .month-name {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .calendar-day {
+    font-weight: bold;
+    padding: 10px 0;
+    background-color: #f0f0f0;
+    font-family: 'NexaLight', sans-serif;
+
+  }
+  
+  .calendar-date {
+    padding: 20px 0;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    position: relative;
+    font-family: 'NexaLight', sans-serif;
+
+  }
+  
+  .calendar-date::before {
+    content: attr(data-date);
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-weight: bold;
+  }
+  
+  .calendar-date .event {
+    margin-top: 5px;
+    padding: 3px;
+    background-color: #90dabb;
+    border-left: 3px solid #85C484;
+    border-radius: 3px;
+  }
+  .calendar-title {
+    text-align: center;
+    margin: 50px 0;
+    font-family: 'Nexa Bold', sans-serif;
+
+  }
+  .calendar-date .event {
+    position: relative;
+    padding: 5px;
+    margin: 5px 0;
+    background-color: #f5f5f5;
+    border-left: 3px solid #85C484;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  .calendar-date .event .event-name {
+    font-weight: bold;
+    color: #85C484;
+  }
+  
+  .calendar-date .event .tooltip {
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    bottom: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .calendar-date .event:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  .calendar-date.today {
+    border: 2px solid #85C484;
+  }  
+  .day-number {
+    text-align: start;
+    margin-left: 20px;
+  }
+  .view-toggle-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid transparent;
+    background-color: #85C484;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    border-radius: 0;
+  }
+  
+  .view-toggle-buttons button.selected {
+    background-color: white;
+    color: #85C484;
+    border-color: #85C484;
+    border-radius: 0;
+  }
+  
+  .view-toggle-buttons button:first-child {
+    border-right: none;
+  }
+  
+  .view-toggle-buttons button:hover {
+    background-color: #72ac6d;
+  }
+  
+  .view-toggle-buttons button.selected:hover {
+    background-color: white;
+    color: #85C484;
+  }
+  .view-toggle-buttons {
+    width: 90%;
+    text-align: end;
+    margin: 50px 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  li {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  }
+  
+  li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #fff;
+  }
+  .list-events p {
+    color: #666;
+  }
+  
+  button {
+    background-color: #fff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px solid #85C484;
+    color: #85C484;
+  }
+  
+  button:hover {
+    background-color: #72ac6d;
+    color: #fff;
+  }
+  
+  .pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-controls button {
+    flex: 1;
+    margin: 0 5px;
+  }
+  
+  .pagination-controls span {
+    flex: 2;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .list-events{
+    width: 80%;
+    margin: 50px auto;
+    font-family: 'NexaLight', sans-serif;
+
+  }
+  .list-events span {
+    font-family: 'Nexa Bold', sans-serif;
+
+  }

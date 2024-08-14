@@ -4,11 +4,11 @@ body {
 }
 .hero-left h1 {
     font-family: 'Nexa bold', sans-serif;
-    font-size: 60px;
+    font-size: 50px;
 }
 .hero-left p {
     font-family: 'Nexalight', sans-serif;
-    font-size: 25px;
+    font-size: 20px;
 
 }
 .btn-black {
@@ -101,3 +101,10 @@ body {
 .signup-content span, .why-urbanroots span {
     color: #85C484;
 }
+.map-container {
+    width: 100%;
+    height: 500px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 100px;
+  }

@@ -9,5 +9,5 @@ export interface Event {
   location: string;
   maxParticipants?: number;
   organizers: string[];
-  participants?: string[];
+  gardenName?: string;
 }

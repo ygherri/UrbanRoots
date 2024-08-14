@@ -1,12 +1,66 @@
-<h2>Calendrier des événements</h2>
-<div *ngIf="events$ | async as events">
-  <ul>
-    <li *ngFor="let event of events">
-      <h3>{{ event.name }}</h3>
-      <p>{{ event.description }}</p>
-      <p>Date et heure : {{ event.date.toDate() | date:'fullDate' }} à {{ event.date.toDate() | date:'shortTime' }}</p>
-      <p>Lieu : {{ event.location }}</p>
-      <p>Jardin associé : {{ event.gardenId }}</p>
-    </li>
-  </ul>
+<h2 class="calendar-title">Événements</h2>
+
+<div class="view-toggle-buttons">
+  <button (click)="toggleView('calendar')" [ngClass]="{'selected': selectedView === 'calendar'}">Calendrier</button>
+  <button (click)="toggleView('list')" [ngClass]="{'selected': selectedView === 'list'}">Afficher la liste des événements</button>
 </div>
+
+<div *ngIf="selectedView === 'calendar'; else eventList">
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button (click)="addMonth(-1)">Précédent</button>
+      <span class="month-name">{{ monthName }}</span>
+      <button (click)="addMonth(1)">Suivant</button>
+    </div>
+
+    <div class="calendar-grid">
+      <div class="calendar-day">Lundi</div>
+      <div class="calendar-day">Mardi</div>
+      <div class="calendar-day">Mercredi</div>
+      <div class="calendar-day">Jeudi</div>
+      <div class="calendar-day">Vendredi</div>
+      <div class="calendar-day">Samedi</div>
+      <div class="calendar-day">Dimanche</div>
+
+      <div *ngFor="let day of daysInMonth" class="calendar-date" [ngClass]="{'today': isToday(day)}">
+        <div class="day-number">{{ day.getDate() }}</div>
+        <div *ngFor="let event of getEventsForDay(day)" class="event">
+          <div class="event-name">{{ event.gardenName }} - {{ event.date.toDate() | date:'shortTime' }}</div>
+          <div class="tooltip">
+            <h4>{{ event.name }}</h4>
+            <p>Jardin : {{ event.gardenName }}</p>
+            <p>{{ event.description }}</p>
+            <p>Date et heure : {{ event.date.toDate() | date:'fullDate' }} à {{ event.date.toDate() | date:'shortTime' }}</p>
+            <p>Lieu : {{ event.location }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #eventList>
+  <div *ngIf="events.length > 0; else noEvents" class="list-events">
+    <ul>
+      <li *ngFor="let event of paginatedEvents" >
+        <h3>{{ event.name }}</h3>
+        <p>{{ event.description }}</p>
+        <p><span>Date et heure :</span> {{ event.date.toDate() | date:'fullDate' }} à {{ event.date.toDate() | date:'shortTime' }}</p>
+        <p><span>Lieu :</span> {{ event.location }}</p>
+        <p><span>Jardin associé :</span>  {{ event.gardenName }}</p>
+        <button *ngIf="event.id" (click)="deleteEvent(event.id!)">Supprimer</button>
+      </li>
+    </ul>
+
+    <!-- Pagination-->
+    <div class="pagination-controls" *ngIf="events.length > eventsPerPage">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+      <span>Page {{ currentPage }} sur {{ totalPages() }}</span>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages()">Suivant</button>
+    </div>
+  </div>
+
+  <ng-template #noEvents>
+    <p>Aucun événement n'est prévu pour ce jardin.</p>
+  </ng-template>
+</ng-template>

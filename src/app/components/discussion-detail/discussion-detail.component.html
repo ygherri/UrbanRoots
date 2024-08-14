@@ -1,6 +1,5 @@
 
 <div class="comments-container">
-  <h2>{{ selectedDiscussion?.title }}</h2>
     <div class="comments-list">
       <div *ngIf="(comments$ | async) as comments">
         <div *ngFor="let comment of comments">

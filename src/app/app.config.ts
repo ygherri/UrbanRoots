@@ -16,7 +16,8 @@ import { CommonModule } from '@angular/common';
 import { DiscussionListComponent } from './components/discussion-list/discussion-list.component';
 import { DiscussionCreateComponent } from './components/discussion-create/discussion-create.component';
 
-
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 //import { AgmCoreModule } from '@agm/core';
 import { routes } from './app.routes';
@@ -44,7 +45,11 @@ export const appConfig: ApplicationConfig = {
       FormsModule,
       GoogleMapsModule,
       AngularFireAuthModule,
-      AngularFirestoreModule
+      AngularFirestoreModule,
+      CalendarModule.forRoot({
+        provide: DateAdapter,
+        useFactory: adapterFactory,
+      }),
     ), 
     provideFirebaseApp(() => initializeApp({"projectId":"urbanroots-efdce","appId":"1:490463529477:web:fc8e777cd4f5a142642a6c","storageBucket":"urbanroots-efdce.appspot.com","apiKey":"AIzaSyBKywTe7-B3pEIEoz4fP6JWp0qBj1vTvjQ","authDomain":"urbanroots-efdce.firebaseapp.com","messagingSenderId":"490463529477","measurementId":"G-RN720JBJYT"})), provideFirestore(() => getFirestore())
   ]
