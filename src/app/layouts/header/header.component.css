@@ -1,8 +1,15 @@
-nav ul {
+.ul-user-loged {
     list-style-type: none;
     display: flex;
     align-items: center;
     width: 50%;
+    justify-content: space-evenly;
+}
+.ul-user-not-loged {
+  list-style-type: none;
+    display: flex;
+    align-items: center;
+    width: 20%;
     justify-content: space-evenly;
 }
 nav {
@@ -15,8 +22,11 @@ nav {
 .m-right-30 {
   margin-right: 50px;
 }
+.logo {
+  margin: 20px;
+}
 .logo img {
-    width: 300px;
+    width: 240px;
     max-width: 100%;
 }
 .nav-buttons {
@@ -46,5 +56,75 @@ nav {
     padding: 10px 20px;
     border: 1px solid #85C484;
     cursor: pointer;
+  }
+  .burger-menu {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) and (max-width: 1000px) {
+    .ul-user-loged, .ul-user-not-loged {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #fff;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      z-index: 1000;
+    }
+  
+    .ul-user-loged.active, .ul-user-not-loged.active {
+      display: flex;
+    }
+  
+    .ul-user-loged li, .ul-user-not-loged li {
+      margin-right: 0;
+      padding: 10px 20px;
+    }
+  
+    .burger-menu {
+      display: block;
+    }
+  }
+  @media (min-width: 1000px) and (max-width: 1500px) { 
+    .ul-user-loged {
+      width: 70%;
+    }
+  }
+  @media (max-width: 768px) {
+    .ul-user-loged, .ul-user-not-loged {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #fff;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      z-index: 1000;
+    }
+  
+    .ul-user-loged.active, .ul-user-not-loged.active {
+      display: flex;
+      padding: 30px 0;
+      background-color: #85C484;
+      margin-top: 50px;
+    }
+  
+    .ul-user-loged li, .ul-user-not-loged li {
+      margin-right: 0;
+      padding: 10px 20px;
+    }
+  
+    .burger-menu {
+      display: block;
+    }
+    .logo {
+      margin: 20px 0;
+    }
+    nav {
+      margin: 0 20px;
+    }
   }
   

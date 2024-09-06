@@ -20,11 +20,9 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     user(this.auth).subscribe((currentUser: any) => {
       if (currentUser) {
-        // Utilisateur authentifié, récupérer les utilisateurs
         const usersCollection = collection(this.firestore, 'users');
         this.users$ = collectionData(usersCollection, { idField: 'id' });
       } else {
-        // Utilisateur non authentifié, gérer l'accès ici
         console.error('Utilisateur non authentifié');
       }
     });

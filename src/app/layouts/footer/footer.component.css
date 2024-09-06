@@ -30,8 +30,28 @@ footer {
     line-height: 50px;
     cursor: pointer;
 }
+.footer-1 ul li a {
+    text-decoration: none;
+    color: #fff;
+}
 .right img {
     margin-right: 20px;
     width: 35px;
     cursor: pointer;
+}
+@media (max-width: 768px) {
+.footer-1 {
+        display: block;
+    }
+    .footer-1-ul {
+        width: 100%;
+    }
+    .footer-2 {
+        text-align: center;
+        display: block;
+        padding: 30px;
+    }
+    .right {
+        margin: 20px;
+    }
 }

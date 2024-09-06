@@ -1,0 +1,47 @@
+.approve-gardens {
+    padding: 100px;
+    font-family: 'NexaLight', sans-serif;
+}
+.approve-gardens h2 {
+    font-family: 'Nexa bold', sans-serif;
+
+}
+.btn-green {
+    background-color: #85C484;
+    text-align: center;
+    color: #fff;
+    border-radius: 26px;
+    text-decoration: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 0;
+    font-family: 'Nexa bold', sans-serif;
+    margin: 20px 0;
+  }
+  .btn-green-outline {
+    background-color: #fff;
+    text-align: center;
+    color: #85C484;
+    border-radius: 26px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid #85C484;
+    cursor: pointer;
+    font-family: 'Nexa bold', sans-serif;
+  }
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  ul li {
+    width: 21%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    margin-right: 2%;
+  }
+.m-right-button {
+    margin-right: 10px;
+}

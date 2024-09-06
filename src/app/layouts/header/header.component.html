@@ -1,14 +1,17 @@
 <nav class="nav-buttons">
     <div class="logo"><a href="/home"><img src="/assets/images/urbanroots.svg" alt="UrbanRoots Logo"></a></div>
-    <ul>
-      <li *ngIf="(currentUser$ | async) === null"><a class="btn-green-outline" routerLink="/login">Connexion</a></li>
-      <li *ngIf="(currentUser$ | async) === null"><a routerLink="/signup" class="btn-green">Inscription</a></li>
+    <div class="burger-menu" (click)="toggleMenu()">☰</div>
+    <ul *ngIf="(currentUser$ | async) !== null" class="ul-user-loged" [class.active]="menuActive">
       <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/profile" class="nav-btn">Profil</a></li>
       <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/discussions" class="nav-btn">Forum</a></li>
       <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/create-garden" class="nav-btn">Mes jardins</a></li>
       <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/calendar" class="nav-btn">Évènements</a></li>
-
+      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null && (isAdmin$ | async)"><a routerLink="/approve-gardens" class="nav-btn">Admin</a></li>
       <li *ngIf="(currentUser$ | async) !== null"><a (click)="signOut()" class="btn-green btn-default">Déconnexion</a></li>
+    </ul>
+    <ul *ngIf="(currentUser$ | async) === null" class="ul-user-not-loged" [class.active]="menuActive">
+      <li *ngIf="(currentUser$ | async) === null"><a class="btn-green-outline" routerLink="/login">Connexion</a></li>
+      <li *ngIf="(currentUser$ | async) === null"><a routerLink="/signup" class="btn-green">Inscription</a></li>
     </ul>
   </nav>
   

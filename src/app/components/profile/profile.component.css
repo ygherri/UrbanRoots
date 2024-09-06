@@ -67,3 +67,9 @@ input:-moz-autofill {
 .form-style h2 {
     text-align: center;
 }
+
+@media (max-width: 768px) {
+.form-style {
+    width: 80%;
+}
+}

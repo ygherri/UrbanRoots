@@ -1,13 +1,20 @@
-<div>
+<div class="approve-gardens">
   <h2>Validation des jardins</h2>
+  <div class="manage-admin">
+    <button (click)="goToManageAdmin()" class="btn-green">Gérer les admins</button>
+  </div>
   <ul>
     <li *ngFor="let garden of gardens$ | async">
-      <p>{{ garden.name }} - {{ garden.location }}</p>
+      <p>{{ garden.name }}</p>
       <p>{{ garden.description }}</p>
-      <button type="button" (click)="approveGarden(garden.id)" *ngIf="!garden.approved">Accepter</button>
-      <button type="button" (click)="rejectGarden(garden.id)" *ngIf="!garden.approved">Refuser</button>
-      <p *ngIf="garden.approved">Validé</p>
-      <button type="button" (click)="deleteGarden(garden.id)" *ngIf="garden.approved">Supprimer</button>
+      <p><strong>Date de création :</strong> {{ toDate(garden.createdAt) | date:'longDate' }}</p>
+      <p><strong>Type :</strong> {{ garden.type }}</p>
+      <p><strong>Adresse :</strong> {{ garden.address }}</p>
+      <p *ngIf="garden.approved; else notApproved">Validé</p>
+      <ng-template #notApproved><p>Pas encore validé</p></ng-template>
+      <button class="btn-green m-right-button" type="button" (click)="approveGarden(garden.id)" *ngIf="!garden.approved">Accepter</button>
+      <button class="btn-green-outline" type="button" (click)="rejectGarden(garden.id)" *ngIf="!garden.approved">Refuser</button>
+      <button class="btn-green" type="button" (click)="deleteGarden(garden.id)" *ngIf="garden.approved">Supprimer</button>
     </li>
   </ul>
 </div>

@@ -3,16 +3,29 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 import { Router } from '@angular/router';
 import { Firestore, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import * as bcrypt from 'bcryptjs';
-import { Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser$: Observable<User | null>;
+  currentUser$: Observable<CustomUser | null>;
   constructor(private auth: Auth, private firestore: Firestore, private router: Router) {
-    this.currentUser$ = user(this.auth);
+    this.currentUser$ = user(this.auth).pipe(
+      switchMap(firebaseUser => {
+        const typedUser = firebaseUser as User;
+        if (typedUser && typedUser.uid) {
+          return from(this.getUserProfile(typedUser.uid)).pipe(
+            map(userProfile => ({ ...typedUser, ...userProfile } as CustomUser))
+          );
+        } else {
+          return of(null);
+        }
+      })
+    );
   }
   getAuthUser() {
     return user(this.auth);
@@ -59,4 +72,7 @@ export class AuthService {
     }
     await updateDoc(doc(this.firestore, 'users', userId), data);
   }
+}
+interface CustomUser extends User {
+  role?: string;
 }

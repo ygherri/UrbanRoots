@@ -28,7 +28,15 @@ export class GardenService {
   constructor(private firestore: Firestore) {}
   getAllGardens(): Observable<Garden[]> {
     const gardensCollection = collection(this.firestore, 'gardens');
-    return collectionData(gardensCollection, { idField: 'id' }) as Observable<Garden[]>;
+    return collectionData(gardensCollection, { idField: 'id' }).pipe(
+      map((gardens: Garden[]) =>
+        gardens.map(garden => ({
+          ...garden,
+          createdAt: (garden.createdAt as Timestamp).toDate()
+        }))
+      )
+    ) as Observable<Garden[]>;
+
   }
 
   getGardenById(gardenId: string): Observable<Garden | undefined> {

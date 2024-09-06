@@ -49,3 +49,22 @@
 .discussion-content p, .discussion-content small {
     font-family: 'NexaLight', sans-serif;
 }
+
+@media (max-width: 768px) {
+.discussion-content {
+    margin: 30px;
+    width: auto;
+ }
+ .discussion-content .btn-green {
+    margin: 30px 0;
+ }
+ .discussion-content .btn-green-outline {
+    padding: 8px 20px;
+    margin-top: 20px;
+    margin-left: 0;
+ }
+ .btn-inherit {
+    width: 100%;
+    text-align: center;
+ }
+}

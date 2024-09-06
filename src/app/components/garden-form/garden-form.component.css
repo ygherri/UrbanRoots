@@ -126,3 +126,33 @@ input:-moz-autofill {
     padding-top: 100px;
     font-size: 20px;
 }
+
+@media (max-width: 768px) {
+.garden-list h2{
+    font-size: 40px;
+}
+.garden-list {
+    width: 80%;
+}
+.add-garden {
+    width: 80%;
+    text-align: start;
+    margin: auto;
+}
+.add-garden p {
+    width: 90%;
+}
+.garden-list ul li {
+    display: block;
+    margin-bottom: 50px;
+}
+.garden-list ul {
+    padding-left: 0;
+}
+.btn-green {
+    margin: 0 10px 0 0;
+}
+.form-style {
+    width: 80%;
+}
+}

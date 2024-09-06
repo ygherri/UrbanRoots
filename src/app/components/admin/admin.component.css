@@ -1,0 +1,45 @@
+.admin-manage {
+    padding: 100px;
+}
+.admin-manage h2{
+    font-family: "Nexa bold", sans-serif;
+}
+.admin-manage ul {
+    list-style-type: none;
+}
+.admin-manage ul li {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.btn-green {
+    background-color: #85C484;
+    text-align: center;
+    color: #fff;
+    border-radius: 26px;
+    text-decoration: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 0;
+    font-family: 'Nexa bold', sans-serif;
+  }
+  .btn-green-outline {
+    background-color: #fff;
+    text-align: center;
+    color: #85C484;
+    border-radius: 26px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid #85C484;
+    cursor: pointer;
+    font-family: 'Nexa bold', sans-serif;
+  }
+  .m-right-button {
+    margin-right: 10px;
+}
+.btns-manage {
+    margin-left: 50px;
+}
+.user-mail {
+    width: 250px;
+}

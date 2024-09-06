@@ -15,6 +15,9 @@ import { DiscussionDetailComponent } from './components/discussion-detail/discus
 import { EventFormComponent } from './components/event-form/event-form.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CommonModule } from '@angular/common';
+import { MentionsLegalesComponent } from './pages/mentions-legales/mentions-legales.component';
+import { ConditionsUtilisationComponent } from './pages/conditions-utilisation/conditions-utilisation.component';
+import { AProposComponent } from './pages/a-propos/a-propos.component';
 
 
 
@@ -33,6 +36,9 @@ export const routes: Routes = [
   { path: 'discussions/:id', component: DiscussionDetailComponent },
   { path: 'gardens/:gardenId/events/new', component: EventFormComponent },
   { path: 'calendar', component: CalendarComponent },
+  { path: 'mentions-legales', component: MentionsLegalesComponent },
+  { path: 'conditions-utilisation', component: ConditionsUtilisationComponent },
+  { path: 'a-propos', component: AProposComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
