@@ -43,3 +43,21 @@
 .user-mail {
     width: 250px;
 }
+
+@media (max-width: 768px) { 
+.m-right-button {
+    margin: 20px 10px 20px 0;
+}
+.btns-manage {
+    margin-left: 0;
+}
+.admin-manage {
+    padding: 50px;
+}
+.admin-manage ul li {
+    display: block;
+}
+.admin-manage ul {
+    padding-left: 0;
+}
+}

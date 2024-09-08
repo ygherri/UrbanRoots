@@ -28,7 +28,7 @@
     cursor: pointer;
     border: none;
     font-family: 'Nexa bold', sans-serif;
-    margin-left: 10px;
+    margin-top: 20px;
 }
 .btn-green-outline {
     background-color: #fff;
@@ -40,7 +40,7 @@
     border: 1px solid #85C484;
     cursor: pointer;
     font-family: 'Nexa bold', sans-serif;
-    margin-left: 20px;
+    margin-right: 20px;
 
   }
 .discussion-content h2 {
@@ -48,6 +48,9 @@
 }
 .discussion-content p, .discussion-content small {
     font-family: 'NexaLight', sans-serif;
+}
+.btns-discussions-list {
+        margin: 30px 0;
 }
 
 @media (max-width: 768px) {

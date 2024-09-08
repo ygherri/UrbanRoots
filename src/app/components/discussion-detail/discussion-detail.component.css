@@ -25,6 +25,7 @@
     height: 40px;
     border-radius: 50px;
     margin-right: 15px;
+    padding: 0 0 0 20px;
 }
 .comment-input {
     margin: auto;
@@ -46,4 +47,20 @@
     border: none;
     border-top: 1px solid #ccc;
     margin: 15px 0;
+}
+.discussion-details {
+    width: 80%;
+    margin: 100px auto 0;
+}
+@media (max-width: 768px) {
+    .comment-input {
+        padding: 0 50px;
+    }
+    #comment {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .comment-input button {
+        margin: 20px 0;
+    }
 }

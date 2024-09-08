@@ -5,10 +5,13 @@
 <div *ngFor="let discussion of discussions$ | async" class="discussion-content">
     <h2>{{ discussion.title }}</h2>
     <p>{{ discussion.content }}</p>
+
     <small>Par {{ discussion.userName }} le {{ discussion.createdAt | date }}</small>
+    <div>
     <button class="btn-green-outline" *ngIf="discussion.id && discussion.userId && discussion.userId === currentUser?.uid" 
             (click)="deleteDiscussion(discussion.id!)">Supprimer</button>
     <button (click)="accessDiscussion(discussion.id!)" class="btn-green">Accéder à la discussion</button>
+  </div>
   </div>
   
   <!-- Détails de la discussion -->

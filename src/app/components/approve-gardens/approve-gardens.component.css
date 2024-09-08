@@ -6,6 +6,7 @@
     font-family: 'Nexa bold', sans-serif;
 
 }
+
 .btn-green {
     background-color: #85C484;
     text-align: center;
@@ -44,4 +45,15 @@
   }
 .m-right-button {
     margin-right: 10px;
+}
+@media (max-width: 768px) { 
+  .approve-gardens ul {
+    padding-left: 0;
+  }
+  .approve-gardens ul li {
+    width: 87%;
+  }
+  .approve-gardens {
+    padding: 40px;
+  }
 }
