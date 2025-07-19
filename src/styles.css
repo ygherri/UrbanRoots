@@ -1,11 +1,10 @@
-/* @import "~leaflet/dist/leaflet.css"; */
 @font-face {
     font-family: 'Nexa bold';
-    src: url('/src/assets/fonts/Nexa-Heavy.ttf') format('truetype');
+    src: url('assets/fonts/Nexa-Heavy.ttf') format('truetype');
 }
 @font-face {
     font-family: 'Nexalight';
-    src: url('/src/assets/fonts/Nexa-ExtraLight.ttf') format('truetype');
+    src: url('assets/fonts/Nexa-ExtraLight.ttf') format('truetype');
 }
 
 .leaflet-container .leaflet-tile,
@@ -18,18 +17,18 @@
 }
 
 .leaflet-container .leaflet-marker-icon {
-  background-image: url('assets/leaflet/images/marker-icon.png') !important;
+  background-image: url('/assets/leaflet/images/marker-icon.png') !important;
 }
 .leaflet-container .leaflet-marker-shadow {
-  background-image: url('assets/leaflet/marker-shadow.png') !important;
+  background-image: url('/assets/leaflet/marker-shadow.png') !important;
 }
 
 .leaflet-container .leaflet-pane .leaflet-layer {
-  background-image: url('assets/leaflet/layers.png');
+  background-image: url('/assets/leaflet/layers.png');
 }
 
 .leaflet-container .leaflet-pane .leaflet-layer-2x {
-  background-image: url('assets/leaflet/layers-2x.png');
+  background-image: url('/assets/leaflet/layers-2x.png');
 }
 body {
     margin: 0;
