@@ -1,11 +1,11 @@
-@import "~leaflet/dist/leaflet.css";
+/* @import "~leaflet/dist/leaflet.css"; */
 @font-face {
     font-family: 'Nexa bold';
-    src: url('/assets/fonts/Nexa-Heavy.ttf') format('truetype');
+    src: url('/src/assets/fonts/Nexa-Heavy.ttf') format('truetype');
 }
 @font-face {
     font-family: 'Nexalight';
-    src: url('/assets/fonts/Nexa-ExtraLight.ttf') format('truetype');
+    src: url('/src/assets/fonts/Nexa-ExtraLight.ttf') format('truetype');
 }
 
 .leaflet-container .leaflet-tile,
