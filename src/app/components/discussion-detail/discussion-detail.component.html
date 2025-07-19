@@ -7,7 +7,7 @@
         <div *ngFor="let comment of comments">
           <p>{{ comment.text }}</p>
           <small>Par {{ comment.userName }}  {{ comment.createdAt | date:'EEEE d MMMM y, HH:mm' }}</small>
-          <button class="btn-green-outline" *ngIf="comment.userName === currentUserFullName" (click)="deleteComment(comment.id!)">Supprimer</button>
+          <button class="btn-green-outline" *ngIf="comment.userId === currentUserId" (click)="deleteComment(comment.id!)">Supprimer</button>
           <hr class="comment-separator">
         </div>
       </div>

@@ -1,12 +1,12 @@
 <nav class="nav-buttons">
-    <div class="logo"><a href="/home"><img src="/assets/images/urbanroots.svg" alt="UrbanRoots Logo"></a></div>
-    <div class="burger-menu" (click)="toggleMenu()">☰</div>
-    <ul *ngIf="(currentUser$ | async) !== null" class="ul-user-loged" [class.active]="menuActive">
-      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/profile" class="nav-btn" (click)="closeMenu()">Profil</a></li>
-      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/discussions" class="nav-btn" (click)="closeMenu()">Forum</a></li>
+    <div class="logo"><a href="/home"><img src="assets/images/urbanroots.svg" alt="UrbanRoots Logo"></a></div>
+    <div class="burger-menu" #burgerRef (click)="toggleMenu()">☰</div>
+    <ul *ngIf="(currentUser$ | async) !== null" class="ul-user-loged" [class.active]="menuActive" #menuRef>
       <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/create-garden" class="nav-btn" (click)="closeMenu()">Mes jardins</a></li>
       <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/calendar" class="nav-btn" (click)="closeMenu()">Évènements</a></li>
-      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null && (isAdmin$ | async)"><a routerLink="/approve-gardens" class="nav-btn" (click)="closeMenu()">Admin</a></li>
+      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/discussions" class="nav-btn" (click)="closeMenu()">Forum</a></li>
+      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null"><a routerLink="/profile" class="nav-btn" (click)="closeMenu()">Profil</a></li>
+      <li class="m-right-30" *ngIf="(currentUser$ | async) !== null && (isAdmin$ | async)"><a routerLink="/approve-gardens" class="nav-btn" (click)="closeMenu()">Espace Admin</a></li>
       <li *ngIf="(currentUser$ | async) !== null"><a (click)="signOut();closeMenu()" class="btn-green btn-default">Déconnexion</a></li>
     </ul>
     <ul *ngIf="(currentUser$ | async) === null" class="ul-user-not-loged" [class.active]="menuActive">

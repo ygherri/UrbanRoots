@@ -1,18 +1,4 @@
 <div class="map-container" style="width: 100% !important; height: 500px !important;">
-<google-map [center]="center" [zoom]="zoom" class="map-style full-width-map">
-  <map-marker
-    *ngFor="let markerPosition of markerPositions; let i = index"
-    [position]="markerPosition"
-    #marker="mapMarker"
-    (mapClick)="openInfoWindow(marker, i)"
-  ></map-marker>
-  <map-info-window #infoWindow>
-    <div *ngIf="selectedGarden" class="info-window">
-      <h3>{{ selectedGarden.name }}</h3>
-      <p>{{ selectedGarden.description }}</p>
-      <p>Type: {{ selectedGarden.type }}</p>
-      <p>Date d'ajout: {{ createdAtDate | date:'EEEE dd MMMM yyyy, à HH:mm' }}</p>
-    </div>
-  </map-info-window>
-</google-map>
+<div id="leaflet-map" style="height: 500px; width: 100%;"></div>
+
 </div>

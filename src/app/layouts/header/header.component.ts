@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { User } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'; 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
 
 interface CustomUser extends User {
   role?: string;
@@ -21,6 +22,8 @@ export class HeaderComponent implements OnInit {
   currentUser$: Observable<User | null>;
   isAdmin$: Observable<boolean>; 
   menuActive = false;
+  @ViewChild('menuRef') menuRef!: ElementRef; 
+  @ViewChild('burgerRef') burgerRef!: ElementRef;
   constructor(private authService: AuthService) {
     this.currentUser$ = this.authService.currentUser$;
     this.isAdmin$ = this.currentUser$.pipe(
@@ -31,6 +34,24 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser$.subscribe(user => console.log('Current User:', user));
   this.isAdmin$.subscribe(isAdmin => console.log('Is Admin:', isAdmin));
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (nav) {
+      if (window.scrollY > 10) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+  });
+  }
+   @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    const clickedInsideMenu = this.menuRef?.nativeElement.contains(event.target);
+    const clickedBurger = this.burgerRef?.nativeElement.contains(event.target);
+    if (!clickedInsideMenu && !clickedBurger) {
+      this.menuActive = false;
+    }
   }
 
   signOut() {

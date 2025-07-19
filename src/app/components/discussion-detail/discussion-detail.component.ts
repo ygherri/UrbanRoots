@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import firebase from 'firebase/compat/app';
 
 interface Comment {
+userId: any;
+firstName: any;
   id?: string;
   text: string;
   userName: string;
@@ -34,6 +36,7 @@ export class DiscussionDetailComponent implements OnInit {
   newComment: string = '';
   discussionId: string | null = null;
   currentUserFullName: string = 'Anonymous';
+currentUserId: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +48,7 @@ export class DiscussionDetailComponent implements OnInit {
     this.auth.authState.subscribe(user => {
       if (user) {
         this.currentUserFullName = `${user.displayName || user.email || 'Anonymous'}`;
+        this.currentUserId = user.uid;
 
         this.discussionId = this.route.snapshot.paramMap.get('id');
         if (this.discussionId) {

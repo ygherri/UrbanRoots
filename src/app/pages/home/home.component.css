@@ -27,8 +27,8 @@ body {
 }
 .hero-content {
     display: flex;
-    padding: 50px 100px;
-    align-items: center;
+    padding: 0px 100px;
+    /* align-items: center; */
 }
 .hero-left {
     width: 50%;
@@ -77,13 +77,9 @@ body {
 }
 .btn-green {
     background-color: #85C484;
-    text-align: center;
     color: #fff;
-    border-radius: 26px;
     border: none;
-    text-decoration: none;
     padding: 10px 20px;
-    cursor: pointer;
     width: 200px;
     font-family: 'Nexa bold', sans-serif;
 
@@ -95,7 +91,7 @@ body {
   }
 .signup-content {
     text-align: center;
-    padding: 100px;
+    padding: 0px 100px 80px;
 }
 .signup-content p {
     width: 70%;

@@ -4,6 +4,7 @@ import { AdminService } from '../../services/admin.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Auth, user } from '@angular/fire/auth';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +16,7 @@ import { Auth, user } from '@angular/fire/auth';
 export class AdminComponent implements OnInit {
   users$: Observable<any[]> | undefined;
 
-  constructor(private adminService: AdminService, private firestore: Firestore, @Inject(Auth) private auth: Auth) {}
+  constructor(private adminService: AdminService, private firestore: Firestore, @Inject(Auth) private auth: Auth, private router: Router) {}
 
   ngOnInit() {
     user(this.auth).subscribe((currentUser: any) => {
@@ -34,6 +35,9 @@ export class AdminComponent implements OnInit {
 
   makeMember(userId: string) {
     this.adminService.updateRole(userId, 'member');
+  }
+  goToManageGarden(): void {
+    this.router.navigate(['/approve-gardens']);
   }
 
 }

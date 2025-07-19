@@ -1,5 +1,8 @@
 <div class="admin-manage">
     <h2>Admin Dashboard</h2>
+    <div class="manage-admin">
+    <button (click)="goToManageGarden()" class="btn-green">Valider les jardins</button>
+  </div>
     <ul>
       <li *ngFor="let user of users$ | async">
         <div class="user-mail">

@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core'
 import { GardenService, Garden } from '../../services/garden.service'; import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'; 
-import { GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import * as L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import { CommonModule } from '@angular/common';
 import { Timestamp } from 'firebase/firestore';
 
@@ -12,62 +13,58 @@ import { Timestamp } from 'firebase/firestore';
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [GoogleMapsModule, CommonModule],
+  imports: [CommonModule],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
   providers: [GardenService],
   encapsulation: ViewEncapsulation.None
 })
 export class MapComponent implements OnInit {
-  center: google.maps.LatLngLiteral = { lat: 48.8566, lng: 2.3522 };
-  zoom = 12;
-  markerPositions: google.maps.LatLngLiteral[] = [];
+  private map: L.Map | undefined;
   gardens: Garden[] = [];
-  selectedGarden: Garden | null = null;
-  @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 
   constructor(private gardenService: GardenService) {}
+
   ngOnInit(): void {
+    this.initMap();
+
     this.gardenService.getApprovedGardens().subscribe({
       next: (gardens: Garden[]) => {
-        console.log('Raw gardens data:', gardens);
-    
-        this.gardens = gardens.map(garden => ({
-          ...garden,
-          createdAt: garden.createdAt instanceof Timestamp ? garden.createdAt.toDate() : garden.createdAt
-        })).filter(garden => {
-          const hasLocation = garden.location?.latitude && garden.location?.longitude;
-          console.log(`Garden ${garden.name} has valid location:`, hasLocation);
-          return garden.approved && hasLocation;
+        this.gardens = gardens
+          .filter(g => g.approved && g.location?.latitude && g.location?.longitude)
+          .map(g => ({
+            ...g,
+            createdAt: g.createdAt instanceof Timestamp ? g.createdAt.toDate() : g.createdAt
+          }));
+
+        this.gardens.forEach(garden => {
+          const marker = L.marker([garden.location.latitude, garden.location.longitude])
+            .addTo(this.map!)
+            this.gardens.forEach(garden => {
+  const createdAtDate = garden.createdAt instanceof Timestamp
+    ? garden.createdAt.toDate()
+    : garden.createdAt;
+
+  const marker = L.marker([garden.location.latitude, garden.location.longitude])
+    .addTo(this.map!)
+    .bindPopup(`
+      <strong>${garden.name}</strong><br>
+      ${garden.description}<br>
+      Type: ${garden.type}<br>
+      Ajouté le: ${new Date(createdAtDate).toLocaleDateString('fr-FR')}
+    `);
+});
+;
         });
-    
-        console.log('Filtered gardens:', this.gardens); 
-    
-        this.markerPositions = this.gardens.map(garden => ({
-          lat: garden.location.latitude,
-          lng: garden.location.longitude
-        }));
-        console.log('Marker positions:', this.markerPositions);
-      },
-      error: (err) => console.error('Error fetching gardens:', err),
-      complete: () => console.log('Fetching gardens complete')
+      }
     });
-    
   }
-  get createdAtDate(): Date | undefined {
-    if (this.selectedGarden?.createdAt instanceof Timestamp) {
-      return this.selectedGarden.createdAt.toDate();
-    } else if (this.selectedGarden?.createdAt instanceof Date) {
-      return this.selectedGarden.createdAt;
-    }
-    return undefined;
-  }
-  openInfoWindow(marker: MapMarker, index: number) {
-    this.selectedGarden = this.gardens[index];
-    console.log('Selected garden: ', this.selectedGarden);
-    if (this.infoWindow) {
-      this.infoWindow.open(marker);
-    }
+
+  private initMap(): void {
+    this.map = L.map('leaflet-map').setView([48.8566, 2.3522], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(this.map);
   }
 
  

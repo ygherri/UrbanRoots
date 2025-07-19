@@ -9,7 +9,6 @@ import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import { importProvidersFrom } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { CommonModule } from '@angular/common';
@@ -43,7 +42,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       CommonModule,
       FormsModule,
-      GoogleMapsModule,
       AngularFireAuthModule,
       AngularFirestoreModule,
       CalendarModule.forRoot({
