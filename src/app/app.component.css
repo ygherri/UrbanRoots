@@ -1,10 +1,11 @@
+
 @font-face {
     font-family: 'Nexa bold';
-    src: url('../../public/assets/fonts/Nexa-Heavy.ttf') format('truetype');
+    src: url('../../src/assets/fonts/Nexa-Heavy.ttf') format('truetype');
 }
 @font-face {
     font-family: 'Nexalight';
-    src: url('../../public/assets/fonts/Nexa-ExtraLight.ttf') format('truetype');
+    src: url('../../src/assets/fonts/Nexa-ExtraLight.ttf') format('truetype');
 }
 body {
     font-family: 'Nexalight', sans-serif;

@@ -3,7 +3,8 @@ import { GardenService, Garden } from '../../services/garden.service'; import { 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'; 
 import * as L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+//import 'leaflet/dist/leaflet.css';
+
 import { CommonModule } from '@angular/common';
 import { Timestamp } from 'firebase/firestore';
 
@@ -23,7 +24,14 @@ export class MapComponent implements OnInit {
   private map: L.Map | undefined;
   gardens: Garden[] = [];
 
-  constructor(private gardenService: GardenService) {}
+  constructor(private gardenService: GardenService) {
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: 'assets/leaflet/images/marker-icon-2x.png',
+      iconUrl: 'assets/leaflet/images/marker-icon.png',
+      shadowUrl: 'assets/leaflet/images/marker-shadow.png'
+    });
+  }
 
   ngOnInit(): void {
     this.initMap();

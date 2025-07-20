@@ -17,7 +17,7 @@
 }
 
 .leaflet-container .leaflet-marker-icon {
-  background-image: url('/assets/leaflet/images/marker-icon.png') !important;
+  background-image: url('/assets/leaflet/marker-icon.png') !important;
 }
 .leaflet-container .leaflet-marker-shadow {
   background-image: url('/assets/leaflet/marker-shadow.png') !important;
